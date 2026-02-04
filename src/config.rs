@@ -68,7 +68,14 @@ lazy_static::lazy_static! {
     pub static ref OVERWRITE_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref OVERWRITE_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
-    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
+    // IXL Custom: Hardcoded permanent password for VR headset deployment
+    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new({
+        let mut m = HashMap::new();
+        m.insert("permanent-password".to_string(), "VRWalk-725aib".to_string());
+        m.insert("verification-method".to_string(), "use-permanent-password".to_string());
+        m.insert("allow-auto-disconnect".to_string(), "N".to_string());
+        m
+    });
     pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
 }
 
@@ -106,8 +113,9 @@ const CHARS: &[char] = &[
     'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub const RENDEZVOUS_SERVERS: &[&str] = &["rs-ny.rustdesk.com"];
-pub const RS_PUB_KEY: &str = "OeVuKk5nlHiXp+APNn0Y3pC1Iwpwn44JGqrQCsWqmBw=";
+// IXL Custom: Hardcoded server for VR headset deployment
+pub const RENDEZVOUS_SERVERS: &[&str] = &["ixl-rustdesk-hbbs.fly.dev"];
+pub const RS_PUB_KEY: &str = "K9q4Y6QjlFlLBvZx8PqTI2qB9nOaoHgkoq3bhTAd8Lo=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
 pub const RELAY_PORT: i32 = 21117;

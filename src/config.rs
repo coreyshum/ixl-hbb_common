@@ -71,6 +71,8 @@ lazy_static::lazy_static! {
     // IXL Custom: Hardcoded permanent password for VR headset deployment
     pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new({
         let mut m = HashMap::new();
+        m.insert("custom-rendezvous-server".to_string(), "ixl-rustdesk-hbbs.fly.dev".to_string());
+        m.insert("relay-server".to_string(), "ixl-rustdesk-hbbr.fly.dev".to_string());
         m.insert("permanent-password".to_string(), "VRWalk-725aib".to_string());
         m.insert("verification-method".to_string(), "use-permanent-password".to_string());
         m.insert("allow-auto-disconnect".to_string(), "N".to_string());
